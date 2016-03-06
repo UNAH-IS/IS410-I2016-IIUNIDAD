@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="222.0" prefWidth="312.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControladorVista1">
+   <children>
+      <Label layoutX="157.0" layoutY="14.0" text="1">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Button layoutX="224.0" layoutY="183.0" mnemonicParsing="false" onAction="#cambiarEscena2" text="Siguiente&gt;" />
+      <Label fx:id="lblMensaje" layoutX="141.0" layoutY="111.0" text="Mensaje" textFill="#1b6bff">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
