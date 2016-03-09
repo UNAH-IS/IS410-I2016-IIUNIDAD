@@ -1,0 +1,75 @@
+Structured Query Language
+	*DDL (Data Definition Language): Instrucciones para crear, eliminar y modificar estructuras fisicas de la base de datos.
+	Por ejemplo: tablas, procedimientos, vistas, indices, etc
+
+	*DML (Data Manipulation Language): Instrucciones para insertar, eliminar y actualizar INFORMACION, por ejemplo, insertar un registro, modificar un registro, eliminar un registro.
+		---Insertar registros:
+
+		INSERT INTO nombre_tabla(campo1, campo2, ... , campon) 
+		VALUES (valor1, valor2, ... , valorn);
+
+		Ejemplo 1: 
+		INSERT INTO tbl_categorias (codigo_categoria, nombre_categoria, descripcion) 
+		VALUES (NULL, 'Social', 'Categoria para aplicaciones como facebook');
+
+		Ejemplo 2 (Omitir el campo AI):
+		INSERT INTO tbl_categorias (nombre_categoria, descripcion) 
+		VALUES ('Social', 'Categoria para aplicaciones como facebook');
+
+		Ejemplo 3: 
+		INSERT INTO tbl_categorias
+		VALUES (NULL, 'Social', 'Categoria para aplicaciones como facebook');
+
+		---Actualizar registros
+
+		UPDATE nombre_tabla
+		SET campo1 = nuevo_valor1,
+			campo2 = nuevo_valor2,
+			.
+			.
+			.
+			campo_n = nuevo_valor_n
+		WHERE condicion; 
+		//Usualmente en la condicion se filtra por la llave primaria
+
+		Ejemplo:
+		UPDATE tbl_categorias 
+		SET nombre_categoria = 'Juegoz', 
+			descripcion = 'Juegos como flappy bird'
+		WHERE codigo_categoria = 2;
+
+		---Eliminar registros
+
+		DELETE FROM nombre_tabla
+		WHERE condicion;
+		//Usualmente en la condicion se filtra por la llave primaria
+
+
+		Ejemplo:
+		DELETE FROM tbl_categorias 
+		WHERE codigo_categoria = 2;
+
+
+	*QL (Query Language): Consultar informacion de la base de datos.
+	Consultar informacion:
+
+	SELECT campo_1, campo_2, ... , campo_n
+	FROM nombre_tabla
+	WHERE condicion;
+
+	Ejemplos:
+	SELECT * FROM tbl_categorias;
+
+	SELECT codigo_categoria,
+	    nombre_categoria,
+	    descripcion
+	FROM tbl_categorias;
+
+	SELECT codigo_categoria,
+	    nombre_categoria,
+	    descripcion
+	FROM tbl_categorias
+	WHERE codigo_categoria = 2;
+
+
+	
