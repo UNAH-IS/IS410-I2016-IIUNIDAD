@@ -72,4 +72,97 @@ Structured Query Language
 	WHERE codigo_categoria = 2;
 
 
+	SELECT codigo_categoria,
+	    nombre_categoria,
+	    descripcion
+	FROM tbl_categorias
+	WHERE nombre_categoria = 'Juegos'
+	AND descripcion = 'Categoria de juegos';
+
+
+	Operadores logicos en SQL estandar:
+	AND
+	OR
+	NOT
+
+	Operadores de comparacion
+	>=
+	<=
+	<, >
+	=
+	!= , <>
+	BETWEEN
+	IS NULL
+	IS NOT NULL
+
+	Ejemplos Operadores:
+
+	SELECT codigo_categoria,
+	    nombre_categoria,
+	    descripcion
+	FROM tbl_categorias
+	WHERE codigo_categoria >= 1
+	AND codigo_categoria <=2;
+
+	SELECT codigo_categoria,
+		    nombre_categoria,
+		    descripcion
+		FROM tbl_categorias
+	WHERE codigo_categoria BETWEEN 1 AND 2;
+
+
+	SELECT codigo_categoria,
+		    nombre_categoria,
+		    descripcion
+		FROM tbl_categorias
+	WHERE descripcion IS NOT NULL;
+
 	
+	Cruces de informacion (Joins)
+
+	SELECT CAMPOS
+	FROM TABLA_1
+	INNER JOIN TABLA_2
+	ON (LLAVE_FORANEA_TABLA_1 = LLAVE_PRIMARIA_TABLA_2)
+	[WHERE CONDICION];
+
+
+	Ejemplo:
+	SELECT A.codigo_aplicacion,
+	    A.codigo_desarrollador,
+	    B.nombre_desarrollador,
+	    A.codigo_empresa,
+	    C.nombre_empresa,
+	    A.codigo_categoria,
+	    D.nombre_categoria,
+	    A.nombre_aplicacion,
+	    A.version,
+	    A.descripcion,
+	    A.calificacion,
+	    A.fecha_publicacion,
+	    A.icono,
+	    A.aplicacion
+	FROM tbl_aplicaciones A
+	INNER JOIN tbl_desarrolladores B
+	ON (A.codigo_desarrollador = B.codigo_desarrollador)
+	INNER JOIN tbl_empresas C
+	ON (A.codigo_empresa = C.codigo_empresa)
+	INNER JOIN tbl_categorias D
+	ON (A.codigo_categoria = D.codigo_categoria);
+
+
+JDBC (Java Database Connectivity)
+	java.sql
+
+Incluir controlador de mysql en el proyecto (.jar)
+	Copiar el archivo .jar en una carpeta llamada lib en el raiz del proyecto
+	Click derecho sobre el proyecto
+	Build Path
+	Configure Build Path
+	Pestaña Libraries
+	Add Jars
+	Seleccionar el .jar dentro del proyecto.
+	Ok.
+
+Hay que tener cuidad de no seleccionar la opcion Add External Jars.
+Si la carpeta lib no aparece en el proyecto, seleccionelo y presione F5 para actualizar.
