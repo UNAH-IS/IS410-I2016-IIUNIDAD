@@ -1,0 +1,23 @@
+package utilidades;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class UtilidadConexion {
+	private final String URL = "jdbc:mysql://localhost/db_playstore";
+	private final String USUARIO = "root";
+	private final String CONSTRASENA = "";
+	private final String CONTROLADOR = "com.mysql.jdbc.Driver";
+	
+	private Connection conexion;
+	
+	public void establecerConexion(){
+		try {
+			Class.forName(CONTROLADOR);//Cargar el driver a la clase actual.
+			//Si pasa de la siguiente linea la conexion 
+			//fue exitosa.
+			conexion = DriverManager.getConnection(
+						URL, USUARIO, CONTRASENA
+					);
+	}
+}

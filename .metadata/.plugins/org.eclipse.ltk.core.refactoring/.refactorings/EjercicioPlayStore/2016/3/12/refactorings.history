@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;utilidades.Conexion&apos; to &apos;UtilidadConexion&apos;&#x0D;&#x0A;- Original project: &apos;EjercicioPlayStore&apos;&#x0D;&#x0A;- Original element: &apos;utilidades.Conexion&apos;&#x0D;&#x0A;- Renamed element: &apos;utilidades.UtilidadConexion&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Conexion&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;utilidades{Conexion.java[Conexion" matchStrategy="1" name="UtilidadConexion" qualified="false" references="true" similarDeclarations="false" stamp="1458060588204" textual="false" version="1.0"/>
+</session>
