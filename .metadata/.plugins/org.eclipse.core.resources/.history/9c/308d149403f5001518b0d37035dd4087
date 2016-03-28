@@ -1,0 +1,44 @@
+package modelo;
+
+public class Desarrollador {
+	private int codigoDesarrollador;
+	private String nombreDesarrollador;
+	private String paginaWeb;
+	private String correoElectronico;
+	public Desarrollador(int codigoDesarrollador, String nombreDesarrollador,
+			String paginaWeb, String correoElectronico) {
+		super();
+		this.codigoDesarrollador = codigoDesarrollador;
+		this.nombreDesarrollador = nombreDesarrollador;
+		this.paginaWeb = paginaWeb;
+		this.correoElectronico = correoElectronico;
+	}
+	public int getCodigoDesarrollador() {
+		return codigoDesarrollador;
+	}
+	public void setCodigoDesarrollador(int codigoDesarrollador) {
+		this.codigoDesarrollador = codigoDesarrollador;
+	}
+	public String getNombreDesarrollador() {
+		return nombreDesarrollador;
+	}
+	public void setNombreDesarrollador(String nombreDesarrollador) {
+		this.nombreDesarrollador = nombreDesarrollador;
+	}
+	public String getPaginaWeb() {
+		return paginaWeb;
+	}
+	public void setPaginaWeb(String paginaWeb) {
+		this.paginaWeb = paginaWeb;
+	}
+	public String getCorreoElectronico() {
+		return correoElectronico;
+	}
+	public void setCorreoElectronico(String correoElectronico) {
+		this.correoElectronico = correoElectronico;
+	}
+	@Override
+	public String toString() {
+		return nombreDesarrollador;
+	}	
+}

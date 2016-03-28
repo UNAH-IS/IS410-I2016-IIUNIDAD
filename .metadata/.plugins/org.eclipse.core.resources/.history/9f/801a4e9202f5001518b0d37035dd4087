@@ -1,0 +1,8 @@
+package modelo;
+
+public class Desarrollador {
+	private int codigoDesarrollador;
+	private String nombreDesarrollador;
+	private String paginaWeb;
+	private String correoElectronico;
+}

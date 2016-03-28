@@ -1,0 +1,8 @@
+package modelo;
+
+public class Empresa {
+	private int codigoEmpresa;
+	private String nombreEmpresa;
+	private String direccion;
+	private String telefono;
+}

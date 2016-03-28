@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="353.0" prefWidth="832.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.ControladorAplicaciones">
+<AnchorPane prefHeight="353.0" prefWidth="832.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControladorAplicaciones">
    <children>
       <SplitPane dividerPositions="0.3891566265060241" layoutX="37.0" layoutY="9.0" prefHeight="424.0" prefWidth="652.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -74,8 +73,8 @@
                         <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="7" />
                         <Slider GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="cboDesarrolladores" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="cboEmpresas" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <ComboBox fx:id="cboCategorias" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
