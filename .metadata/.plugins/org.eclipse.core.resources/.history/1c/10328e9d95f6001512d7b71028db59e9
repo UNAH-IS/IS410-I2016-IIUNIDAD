@@ -1,0 +1,28 @@
+package modelo;
+
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
+public class Aplicacion {
+	//private int codigoAplicacion;
+	private IntegerProperty codigoAplicacion;
+
+	
+	public Aplicacion(int codigoAplicacion){
+		this.codigoAplicacion = new SimpleIntegerProperty(codigoAplicacion);
+	}
+	public int getCodigoAplicacion() {
+		return codigoAplicacion.get();
+	}
+
+	public void setCodigoAplicacion(int codigoAplicacion) {
+		this.codigoAplicacion = new SimpleIntegerProperty(codigoAplicacion);
+	}
+	
+	public IntegerProperty codigoAplicacionProperty(){
+		return codigoAplicacion;
+	}
+	
+	
+	
+}

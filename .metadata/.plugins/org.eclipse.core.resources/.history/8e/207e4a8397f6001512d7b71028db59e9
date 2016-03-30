@@ -50,7 +50,7 @@ public class ControladorAplicaciones implements Initializable{
 		cboEmpresas.setItems(empresas);
 		tblViewAplicaciones.setItems(aplicaciones);
 		inicializarInformacion();
-		asociarColumnas();
+		asociarColumnas()
 		gestorConexiones.cerrarConexion();
 	}
 	
@@ -65,9 +65,7 @@ public class ControladorAplicaciones implements Initializable{
 			empresas, gestorConexiones.getConexion()
 		);
 		aplicaciones.add(
-				new Aplicacion(1,
-						new Desarrollador(0,"Juan","wwww.pagina.com","juan@gmail.com"),
-						null,null,
+				new Aplicacion(1,null,null,null,
 						"Angry Bird", "1.0",
 						"Pajaros enojados",5.0, null)
 			);
@@ -82,18 +80,6 @@ public class ControladorAplicaciones implements Initializable{
 	public void asociarColumnas(){
 		tblClmnNombreAplicacion.setCellValueFactory(
 				 new PropertyValueFactory<Aplicacion, String>("nombreAplicacion")
-		);
-		tblClmnDesarrollador.setCellValueFactory(
-				 new PropertyValueFactory<Aplicacion, Desarrollador>("desarrollador")
-		);
-		tblClmnCategoria.setCellValueFactory(
-				 new PropertyValueFactory<Aplicacion, Categoria>("categoria")
-		);
-		tblClmnVersion.setCellValueFactory(
-				 new PropertyValueFactory<Aplicacion, String>("version")
-		);
-		tblClmnCalificacion.setCellValueFactory(
-				 new PropertyValueFactory<Aplicacion, Double>("calificacion")
-		);
+				);
 	}
 }

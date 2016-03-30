@@ -1,0 +1,8 @@
+package modelo;
+
+import javafx.beans.property.IntegerProperty;
+
+public class Aplicacion {
+	//private int codigoAplicacion;
+	private IntegerProperty codigoAplicacion;
+}
