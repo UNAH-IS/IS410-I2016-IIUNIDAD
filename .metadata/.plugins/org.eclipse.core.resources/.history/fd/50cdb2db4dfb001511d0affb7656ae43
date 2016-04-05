@@ -78,23 +78,10 @@ public class ControladorAplicaciones implements Initializable{
 							Aplicacion newValue //valor seleccionado actualmente
 					) {
 							
-						if (newValue!=null)
-							llenarComponentes(newValue);
+						System.out.println("Nombre: " + newValue.getNombreAplicacion());
 					}
 					
 				});
-	}
-	
-	public void llenarComponentes(Aplicacion a){
-		txtNombreAplicacion.setText(a.getNombreAplicacion());
-		cboDesarrolladores.getSelectionModel().select(a.getDesarrollador());
-		cboCategorias.getSelectionModel().select(a.getCategoria());
-		cboEmpresas.getSelectionModel().select(a.getEmpresa());
-		txtDescripcion.setText(a.getDescripcion());
-		txtVersion.setText(a.getVersion());
-		sldCalificacion.setValue(a.getCalificacion());
-		dpckFechaPublicacion.setValue(a.getFechaPublicacion().toLocalDate());
-		System.out.println("Codigo: "+a.getCodigoAplicacion());
 	}
 	
 	public void inicializarInformacion(){

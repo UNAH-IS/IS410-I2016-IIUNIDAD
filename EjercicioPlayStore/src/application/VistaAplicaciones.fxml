@@ -68,11 +68,11 @@
                               <Insets right="4.0" />
                            </padding>
                         </Label>
-                        <TextField GridPane.columnIndex="1" />
-                        <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <Slider GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="txtNombreAplicacion" GridPane.columnIndex="1" />
+                        <TextArea fx:id="txtDescripcion" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="txtVersion" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <DatePicker fx:id="dpckFechaPublicacion" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Slider fx:id="sldCalificacion" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         <ComboBox fx:id="cboDesarrolladores" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <ComboBox fx:id="cboEmpresas" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <ComboBox fx:id="cboCategorias" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -80,8 +80,8 @@
                   </GridPane>
                   <HBox layoutX="8.0" layoutY="308.0" prefHeight="33.0" prefWidth="300.0" spacing="8.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Nuevo" />
-                        <Button mnemonicParsing="false" text="Guardar" />
+                        <Button mnemonicParsing="false" onAction="#limpiarComponentes" text="Nuevo" />
+                        <Button mnemonicParsing="false" onAction="#almacenarRegistro" text="Guardar" />
                         <Button mnemonicParsing="false" text="Actualizar" />
                         <Button mnemonicParsing="false" text="Eliminar" />
                      </children>

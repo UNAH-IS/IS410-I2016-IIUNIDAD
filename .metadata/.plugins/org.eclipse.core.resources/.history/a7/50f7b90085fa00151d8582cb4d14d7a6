@@ -2,7 +2,6 @@ package modelo;
 
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -130,110 +129,73 @@ public class Aplicacion{
 	public static void llenarListaAplicaciones(
 			ObservableList<Aplicacion> lista,
 			Connection conexion
-	){
-		//Consultar informacion de categorias
-		try {
-			Statement instruccion = conexion.createStatement();
-			ResultSet resultado = instruccion.executeQuery(
-					"SELECT A.codigo_aplicacion, " +
-				    "A.codigo_desarrollador, " +
-				    "A.codigo_empresa, " +
-				    "A.codigo_categoria, " +
-				    "A.nombre_aplicacion, " +
-				    "A.version, " +
-				    "A.descripcion AS descripcion_aplicacion, " +
-				    "A.calificacion, " +
-				    "A.icono, " + 
-				    "A.fecha_publicacion, " +
-				    "B.nombre_desarrollador, " +
-				    "B.pagina_web, " +
-				    "B.correo_electronico, " +
-				    "C.nombre_empresa, " +
-				    "C.direccion, " +
-				    "C.telefono, " +
-				    "D.nombre_categoria, " +
-				    "D.descripcion  AS descripcion_categoria " +
-				"FROM tbl_aplicaciones A " +
-				"INNER JOIN tbl_desarrolladores B " +
-				"ON (A.codigo_desarrollador = B.codigo_desarrollador) " +
-				"INNER JOIN tbl_empresas C " +
-				"ON (A.codigo_empresa = C.codigo_empresa) " +
-				"INNER JOIN tbl_categorias D " +
-				"ON (A.codigo_categoria = D.codigo_categoria)"
+		){
+	//Consultar informacion de categorias
+	try {
+		Statement instruccion = conexion.createStatement();
+		ResultSet resultado = instruccion.executeQuery(
+				"SELECT A.codigo_aplicacion, " +
+			    "A.codigo_desarrollador, " +
+			    "A.codigo_empresa, " +
+			    "A.codigo_categoria, " +
+			    "A.nombre_aplicacion, " +
+			    "A.version, " +
+			    "A.descripcion AS descripcion_aplicacion, " +
+			    "A.calificacion, " +
+			    "A.icono, " + 
+			    "A.fecha_publicacion, " +
+			    "B.nombre_desarrollador, " +
+			    "B.pagina_web, " +
+			    "B.correo_electronico, " +
+			    "C.nombre_empresa, " +
+			    "C.direccion, " +
+			    "C.telefono, " +
+			    "D.nombre_categoria, " +
+			    "D.descripcion  AS descripcion_categoria " +
+			"FROM tbl_aplicaciones A " +
+			"INNER JOIN tbl_desarrolladores B " +
+			"ON (A.codigo_desarrollador = B.codigo_desarrollador) " +
+			"INNER JOIN tbl_empresas C " +
+			"ON (A.codigo_empresa = C.codigo_empresa) " +
+			"INNER JOIN tbl_categorias D " +
+			"ON (A.codigo_categoria = D.codigo_categoria)"
+		);
+		
+		while(resultado.next()){
+			lista.add(
+				new Aplicacion(
+					resultado.getInt("codigo_aplicacion"),
+					new Desarrollador(
+						resultado.getInt("codigo_desarrollador"),
+						resultado.getString("nombre_desarrollador"),
+						resultado.getString("pagina_web"),
+						resultado.getString("correo_electronico")
+					),
+					new Empresa(
+						resultado.getInt("codigo_empresa"),
+						resultado.getString("nombre_empresa"),
+						resultado.getString("direccion"),
+						resultado.getString("telefono")
+					),
+					new Categoria(
+						resultado.getInt("codigo_categoria"),
+						resultado.getString("nombre_categoria"),
+						resultado.getString("descripcion_categoria")
+					),
+					resultado.getString("nombre_aplicacion"),
+					resultado.getString("version"),
+					resultado.getString("descripcion_aplicacion"),
+					resultado.getDouble("calificacion"),
+					resultado.getDate("fecha_publicacion")
+				)
 			);
-			
-			while(resultado.next()){
-				lista.add(
-					new Aplicacion(
-						resultado.getInt("codigo_aplicacion"),
-						new Desarrollador(
-							resultado.getInt("codigo_desarrollador"),
-							resultado.getString("nombre_desarrollador"),
-							resultado.getString("pagina_web"),
-							resultado.getString("correo_electronico")
-						),
-						new Empresa(
-							resultado.getInt("codigo_empresa"),
-							resultado.getString("nombre_empresa"),
-							resultado.getString("direccion"),
-							resultado.getString("telefono")
-						),
-						new Categoria(
-							resultado.getInt("codigo_categoria"),
-							resultado.getString("nombre_categoria"),
-							resultado.getString("descripcion_categoria")
-						),
-						resultado.getString("nombre_aplicacion"),
-						resultado.getString("version"),
-						resultado.getString("descripcion_aplicacion"),
-						resultado.getDouble("calificacion"),
-						resultado.getDate("fecha_publicacion")
-					)
-				);
-			}
-			
-			instruccion.close();
-			resultado.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		//Llenar Lista
-	}
-	
-	public int almacenarRegistro(Connection conexion){
-		try {
-			PreparedStatement instruccion = conexion.prepareStatement(
-					"INSERT INTO tbl_aplicaciones ( " +
-							"codigo_desarrollador, " +
-							"codigo_empresa, " +
-							"codigo_categoria, " +
-							"nombre_aplicacion, " +
-							"version, descripcion, " +
-							"calificacion, " +
-							"fecha_publicacion " +
-					")  " +
-					"VALUES (?, ?, ?, ?, ?, ?, ?, ?)"	
-			);
-			instruccion.setInt(1, desarrollador.getCodigoDesarrollador());
-			instruccion.setInt(2, empresa.getCodigoEmpresa());
-			instruccion.setInt(3, categoria.getCodigoCategoria());
-			instruccion.setString(4, nombreAplicacion.get());
-			instruccion.setString(5, version.get()); 
-			instruccion.setString(6, descripcion.get());
-			instruccion.setDouble(7, calificacion.get());
-			instruccion.setDate(8, fechaPublicacion);
-			int resultado = instruccion.executeUpdate();
-			if (resultado==1){
-				Statement instruccionId = conexion.createStatement();
-				ResultSet resultadoId = instruccionId.executeQuery("SELECT last_insert_id() id");
-				resultadoId.first();
-				codigoAplicacion = new SimpleIntegerProperty(resultadoId.getInt("id"));
-			}
-			return resultado;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return 0;
 		}
 		
+		instruccion.close();
+		resultado.close();
+	} catch (SQLException e) {
+		e.printStackTrace();
 	}
+	//Llenar Lista
+}
 }

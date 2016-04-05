@@ -200,7 +200,7 @@ public class Aplicacion{
 		//Llenar Lista
 	}
 	
-	public int almacenarRegistro(Connection conexion){
+	public void almacenarRegistro(Connection conexion){
 		try {
 			PreparedStatement instruccion = conexion.prepareStatement(
 					"INSERT INTO tbl_aplicaciones ( " +
@@ -223,16 +223,13 @@ public class Aplicacion{
 			instruccion.setDouble(7, calificacion.get());
 			instruccion.setDate(8, fechaPublicacion);
 			int resultado = instruccion.executeUpdate();
-			if (resultado==1){
-				Statement instruccionId = conexion.createStatement();
-				ResultSet resultadoId = instruccionId.executeQuery("SELECT last_insert_id() id");
-				resultadoId.first();
-				codigoAplicacion = new SimpleIntegerProperty(resultadoId.getInt("id"));
-			}
-			return resultado;
+			if (resultado ==0)
+				System.out.println("Registro no se agrego");
+			else
+				System.out.println("Registro se agrego");
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return 0;
 		}
 		
 	}

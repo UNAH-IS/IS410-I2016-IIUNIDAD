@@ -2,7 +2,6 @@ package modelo;
 
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -200,40 +199,8 @@ public class Aplicacion{
 		//Llenar Lista
 	}
 	
-	public int almacenarRegistro(Connection conexion){
-		try {
-			PreparedStatement instruccion = conexion.prepareStatement(
-					"INSERT INTO tbl_aplicaciones ( " +
-							"codigo_desarrollador, " +
-							"codigo_empresa, " +
-							"codigo_categoria, " +
-							"nombre_aplicacion, " +
-							"version, descripcion, " +
-							"calificacion, " +
-							"fecha_publicacion " +
-					")  " +
-					"VALUES (?, ?, ?, ?, ?, ?, ?, ?)"	
-			);
-			instruccion.setInt(1, desarrollador.getCodigoDesarrollador());
-			instruccion.setInt(2, empresa.getCodigoEmpresa());
-			instruccion.setInt(3, categoria.getCodigoCategoria());
-			instruccion.setString(4, nombreAplicacion.get());
-			instruccion.setString(5, version.get()); 
-			instruccion.setString(6, descripcion.get());
-			instruccion.setDouble(7, calificacion.get());
-			instruccion.setDate(8, fechaPublicacion);
-			int resultado = instruccion.executeUpdate();
-			if (resultado==1){
-				Statement instruccionId = conexion.createStatement();
-				ResultSet resultadoId = instruccionId.executeQuery("SELECT last_insert_id() id");
-				resultadoId.first();
-				codigoAplicacion = new SimpleIntegerProperty(resultadoId.getInt("id"));
-			}
-			return resultado;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return 0;
-		}
+	public void almacenarRegistro(){
+		Statement instruccion;
 		
 	}
 }

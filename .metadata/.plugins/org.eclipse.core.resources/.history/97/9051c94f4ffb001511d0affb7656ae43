@@ -222,14 +222,7 @@ public class Aplicacion{
 			instruccion.setString(6, descripcion.get());
 			instruccion.setDouble(7, calificacion.get());
 			instruccion.setDate(8, fechaPublicacion);
-			int resultado = instruccion.executeUpdate();
-			if (resultado==1){
-				Statement instruccionId = conexion.createStatement();
-				ResultSet resultadoId = instruccionId.executeQuery("SELECT last_insert_id() id");
-				resultadoId.first();
-				codigoAplicacion = new SimpleIntegerProperty(resultadoId.getInt("id"));
-			}
-			return resultado;
+			return instruccion.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return 0;

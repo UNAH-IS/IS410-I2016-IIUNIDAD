@@ -1,11 +1,8 @@
 package application;
 
 import java.net.URL;
-import java.sql.Date;
 import java.util.ResourceBundle;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -66,35 +63,6 @@ public class ControladorAplicaciones implements Initializable{
 		inicializarInformacion();
 		asociarColumnas();
 		gestorConexiones.cerrarConexion();
-		
-		tblViewAplicaciones.
-				getSelectionModel().
-				selectedItemProperty().
-				addListener(new ChangeListener<Aplicacion>() {
-					@Override
-					public void changed(
-							ObservableValue<? extends Aplicacion> observable,
-							Aplicacion oldValue, //valor seleccionado previamente
-							Aplicacion newValue //valor seleccionado actualmente
-					) {
-							
-						if (newValue!=null)
-							llenarComponentes(newValue);
-					}
-					
-				});
-	}
-	
-	public void llenarComponentes(Aplicacion a){
-		txtNombreAplicacion.setText(a.getNombreAplicacion());
-		cboDesarrolladores.getSelectionModel().select(a.getDesarrollador());
-		cboCategorias.getSelectionModel().select(a.getCategoria());
-		cboEmpresas.getSelectionModel().select(a.getEmpresa());
-		txtDescripcion.setText(a.getDescripcion());
-		txtVersion.setText(a.getVersion());
-		sldCalificacion.setValue(a.getCalificacion());
-		dpckFechaPublicacion.setValue(a.getFechaPublicacion().toLocalDate());
-		System.out.println("Codigo: "+a.getCodigoAplicacion());
 	}
 	
 	public void inicializarInformacion(){
@@ -125,30 +93,6 @@ public class ControladorAplicaciones implements Initializable{
 		*/
 	}
 	
-	@FXML
-	public void almacenarRegistro(){
-		//Crear un nuevo objeto del tipo aplicacion con los valores 
-		//que estan actualmente en los componentes
-		Aplicacion a = new Aplicacion(
-				0,
-				cboDesarrolladores.getSelectionModel().getSelectedItem(),
-				cboEmpresas.getSelectionModel().getSelectedItem(),
-				cboCategorias.getSelectionModel().getSelectedItem(),
-				txtNombreAplicacion.getText(),
-				txtVersion.getText(),
-				txtDescripcion.getText(),
-				sldCalificacion.getValue(),
-				Date.valueOf(dpckFechaPublicacion.getValue())
-		);
-		//Llamar al metodo almacenarRegistro()
-		gestorConexiones.establecerConexion();
-		int resultado = a.almacenarRegistro(gestorConexiones.getConexion());
-		gestorConexiones.cerrarConexion();
-		
-		if (resultado == 1)
-			aplicaciones.add(a);
-	}
-	
 	public void asociarColumnas(){
 		tblClmnNombreAplicacion.setCellValueFactory(
 				 new PropertyValueFactory<Aplicacion, String>("nombreAplicacion")
@@ -167,7 +111,6 @@ public class ControladorAplicaciones implements Initializable{
 		);
 	}
 	
-	@FXML
 	public void limpiarComponentes(){
 		cboCategorias.getSelectionModel().select(null);
 		cboDesarrolladores.getSelectionModel().select(null);

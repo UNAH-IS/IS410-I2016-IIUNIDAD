@@ -94,7 +94,6 @@ public class ControladorAplicaciones implements Initializable{
 		txtVersion.setText(a.getVersion());
 		sldCalificacion.setValue(a.getCalificacion());
 		dpckFechaPublicacion.setValue(a.getFechaPublicacion().toLocalDate());
-		System.out.println("Codigo: "+a.getCodigoAplicacion());
 	}
 	
 	public void inicializarInformacion(){
