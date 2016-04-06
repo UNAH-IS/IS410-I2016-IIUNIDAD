@@ -81,9 +81,9 @@
                   <HBox layoutX="8.0" layoutY="308.0" prefHeight="33.0" prefWidth="300.0" spacing="8.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#limpiarComponentes" text="Nuevo" />
-                        <Button mnemonicParsing="false" onAction="#almacenarRegistro" text="Guardar" />
-                        <Button mnemonicParsing="false" text="Actualizar" />
-                        <Button mnemonicParsing="false" text="Eliminar" />
+                        <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#almacenarRegistro" text="Guardar" />
+                        <Button fx:id="btnActualizar" disable="true" mnemonicParsing="false" onAction="#actualizarRegistro" text="Actualizar" />
+                        <Button fx:id="btnEliminar" disable="true" mnemonicParsing="false" onAction="#eliminarRegistro" text="Eliminar" />
                      </children>
                   </HBox>
                </children>

@@ -2,7 +2,6 @@ package application;
 
 import java.net.URL;
 import java.sql.Date;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
@@ -13,8 +12,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Slider;
@@ -32,11 +29,6 @@ import utilidades.GestorConexiones;
 public class ControladorAplicaciones implements Initializable{
 	
 	private GestorConexiones gestorConexiones;
-	
-	@FXML Button btnActualizar;
-	@FXML Button btnEliminar;
-	@FXML Button btnGuardar;
-	
 	@FXML private ComboBox<Categoria> cboCategorias;
 	@FXML private ComboBox<Desarrollador> cboDesarrolladores;
 	@FXML private ComboBox<Empresa> cboEmpresas;
@@ -88,12 +80,8 @@ public class ControladorAplicaciones implements Initializable{
 							Aplicacion newValue //valor seleccionado actualmente
 					) {
 							
-						if (newValue!=null){
+						if (newValue!=null)
 							llenarComponentes(newValue);
-							btnActualizar.setDisable(false);
-							btnEliminar.setDisable(false);
-							btnGuardar.setDisable(true);
-						}
 					}
 					
 				});
@@ -182,33 +170,8 @@ public class ControladorAplicaciones implements Initializable{
 			Alert mensaje = new Alert(AlertType.INFORMATION);
 			mensaje.setContentText("Registro con codigo " + a.getCodigoAplicacion()+ " ha sido actualizado con exito.");
 			mensaje.show();
-			aplicaciones.set(
-				tblViewAplicaciones.getSelectionModel().getSelectedIndex(),
-				a
-			);
 		}
 		
-	}
-	
-	@FXML 
-	public void eliminarRegistro(){
-		
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Eliminar registro");
-		alert.setHeaderText("Eliminar registro");
-		alert.setContentText("¿Esta seguro de que desea eliminar este registro?");
-
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == ButtonType.OK){
-			Aplicacion a = tblViewAplicaciones.getSelectionModel().getSelectedItem();
-			gestorConexiones.establecerConexion();
-			int resultado = a.eliminarRegistro(gestorConexiones.getConexion());
-			gestorConexiones.cerrarConexion();
-			if (resultado == 1){
-				aplicaciones.remove(a);
-			}
-			limpiarComponentes();
-		}		
 	}
 	
 	public void asociarColumnas(){
@@ -240,9 +203,5 @@ public class ControladorAplicaciones implements Initializable{
 		txtDescripcion.setText(null);
 		sldCalificacion.setValue(0);
 		dpckFechaPublicacion.setValue(null);
-		
-		btnActualizar.setDisable(true);
-		btnEliminar.setDisable(true);
-		btnGuardar.setDisable(false);
 	}
 }

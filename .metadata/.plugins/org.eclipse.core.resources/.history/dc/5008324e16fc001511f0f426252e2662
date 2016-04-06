@@ -270,17 +270,15 @@ public class Aplicacion{
 		}
 	}
 	
-	public int eliminarRegistro(Connection conexion){
+	public void eliminarRegistro(Connection conexion){
 		try {
 			PreparedStatement instruccion = conexion.prepareStatement(
 					"DELETE FROM tbl_aplicaciones "+ 
 					"WHERE codigo_aplicacion = ?"
 			);
 			instruccion.setInt(1, codigoAplicacion.get());
-			return instruccion.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return 0;
 		}
 	}	
 }

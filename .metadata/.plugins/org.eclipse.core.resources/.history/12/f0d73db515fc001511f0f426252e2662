@@ -159,8 +159,7 @@ public class Aplicacion{
 				"INNER JOIN tbl_empresas C " +
 				"ON (A.codigo_empresa = C.codigo_empresa) " +
 				"INNER JOIN tbl_categorias D " +
-				"ON (A.codigo_categoria = D.codigo_categoria) "
-				+ "ORDER BY A.codigo_aplicacion"
+				"ON (A.codigo_categoria = D.codigo_categoria)"
 			);
 			
 			while(resultado.next()){
@@ -269,18 +268,4 @@ public class Aplicacion{
 			return 0;
 		}
 	}
-	
-	public int eliminarRegistro(Connection conexion){
-		try {
-			PreparedStatement instruccion = conexion.prepareStatement(
-					"DELETE FROM tbl_aplicaciones "+ 
-					"WHERE codigo_aplicacion = ?"
-			);
-			instruccion.setInt(1, codigoAplicacion.get());
-			return instruccion.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return 0;
-		}
-	}	
 }

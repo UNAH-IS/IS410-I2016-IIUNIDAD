@@ -207,7 +207,6 @@ public class ControladorAplicaciones implements Initializable{
 			if (resultado == 1){
 				aplicaciones.remove(a);
 			}
-			limpiarComponentes();
 		}		
 	}
 	
@@ -240,9 +239,5 @@ public class ControladorAplicaciones implements Initializable{
 		txtDescripcion.setText(null);
 		sldCalificacion.setValue(0);
 		dpckFechaPublicacion.setValue(null);
-		
-		btnActualizar.setDisable(true);
-		btnEliminar.setDisable(true);
-		btnGuardar.setDisable(false);
 	}
 }

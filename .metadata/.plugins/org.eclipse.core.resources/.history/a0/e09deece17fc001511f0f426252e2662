@@ -88,12 +88,8 @@ public class ControladorAplicaciones implements Initializable{
 							Aplicacion newValue //valor seleccionado actualmente
 					) {
 							
-						if (newValue!=null){
+						if (newValue!=null)
 							llenarComponentes(newValue);
-							btnActualizar.setDisable(false);
-							btnEliminar.setDisable(false);
-							btnGuardar.setDisable(true);
-						}
 					}
 					
 				});
@@ -207,7 +203,6 @@ public class ControladorAplicaciones implements Initializable{
 			if (resultado == 1){
 				aplicaciones.remove(a);
 			}
-			limpiarComponentes();
 		}		
 	}
 	
@@ -240,9 +235,5 @@ public class ControladorAplicaciones implements Initializable{
 		txtDescripcion.setText(null);
 		sldCalificacion.setValue(0);
 		dpckFechaPublicacion.setValue(null);
-		
-		btnActualizar.setDisable(true);
-		btnEliminar.setDisable(true);
-		btnGuardar.setDisable(false);
 	}
 }

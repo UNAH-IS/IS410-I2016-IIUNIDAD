@@ -207,7 +207,6 @@ public class ControladorAplicaciones implements Initializable{
 			if (resultado == 1){
 				aplicaciones.remove(a);
 			}
-			limpiarComponentes();
 		}		
 	}
 	
