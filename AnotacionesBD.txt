@@ -166,3 +166,44 @@ Incluir controlador de mysql en el proyecto (.jar)
 
 Hay que tener cuidad de no seleccionar la opcion Add External Jars.
 Si la carpeta lib no aparece en el proyecto, seleccionelo y presione F5 para actualizar.
+
+
+INSERT INTO tbl_aplicaciones (
+		codigo_desarrollador,
+		codigo_empresa,
+		codigo_categoria,
+		nombre_aplicacion,
+		version, descripcion,
+		calificacion,
+		fecha_publicacion
+) 
+VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+
+Statement -> Para instrucciones que no necesitan parametrizacion
+PreparedStatement -> Para instrucciones que SI necesitan parametrizacion
+
+
+
+UPDATE tbl_aplicaciones 
+SET codigo_desarrollador = ?, 
+	codigo_categoria = ?, 
+	nombre_aplicacion = ?, 
+	descripcion = ?, 
+	calificacion = ?, 
+	fecha_publicacion = ? 
+WHERE codigo_aplicacion = ?;
+
+
+DELETE FROM tbl_aplicaciones 
+WHERE codigo_aplicacion = ?;
+
+
+Validaciones:
+*Campos vacios o campos obligatorios
+*Validacion de Tipos de datos
+*Seleccion de uno o varios elementos
+*Validacion de patrones
+
+
+

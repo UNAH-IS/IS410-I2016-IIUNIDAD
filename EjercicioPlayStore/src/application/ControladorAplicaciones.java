@@ -4,6 +4,8 @@ import java.net.URL;
 import java.sql.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -141,6 +143,17 @@ public class ControladorAplicaciones implements Initializable{
 	
 	@FXML
 	public void almacenarRegistro(){
+		String errores = validarCampos();
+		if (!errores.equals("")){
+			Alert mensaje = new Alert(AlertType.ERROR);
+			mensaje.setTitle("Error al guardar");
+			mensaje.setHeaderText("Se encontraron los siguientes errrores");
+			mensaje.setContentText(errores);
+			mensaje.show();
+			return;
+		}
+			
+		
 		//Crear un nuevo objeto del tipo aplicacion con los valores 
 		//que estan actualmente en los componentes
 		Aplicacion a = new Aplicacion(
@@ -244,5 +257,36 @@ public class ControladorAplicaciones implements Initializable{
 		btnActualizar.setDisable(true);
 		btnEliminar.setDisable(true);
 		btnGuardar.setDisable(false);
+	}
+	
+	public String validarCampos(){
+		String errores = "";
+		if (txtNombreAplicacion.getText().equals(""))
+			errores += "Debe ingresar el nombre de la aplicación\n";
+		if (txtDescripcion.getText().equals(""))
+			errores += "Debe ingresar la descripción\n";
+		if (txtVersion.getText().equals(""))
+			errores += "Debe ingresar la versión\n";
+		if (cboCategorias.getSelectionModel().getSelectedItem()==null)
+			errores += "Debe seleccionar una categoria\n";
+		if (cboEmpresas.getSelectionModel().getSelectedItem()==null)
+			errores += "Debe seleccionar una empresa\n";
+		if (cboDesarrolladores.getSelectionModel().getSelectedItem()==null)
+			errores += "Debe seleccionar un desarrollador\n";
+		if (dpckFechaPublicacion.getValue()==null)
+			errores += "Debe seleccionar una fecha\n";
+		try{
+			Double.valueOf(txtVersion.getText());
+		}catch (NumberFormatException e){
+			errores += "La versión es un número no válido\n";
+			//e.printStackTrace();
+		}
+		
+		Pattern pattern = Pattern.compile("[0-9]{4}-[0-9]{4}-[0-9]{5}");
+		Matcher matcher = pattern.matcher(txtNombreAplicacion.getText());
+		if (!matcher.matches())
+			errores += "Nombre aplicacion no coincide con el patron de la identidad\n";
+		
+		return errores;
 	}
 }

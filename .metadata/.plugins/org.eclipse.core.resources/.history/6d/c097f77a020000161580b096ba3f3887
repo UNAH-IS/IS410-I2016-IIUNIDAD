@@ -1,0 +1,18 @@
+package application;
+
+public class ControladorLogin {
+	private Main main;
+
+	
+	@FXML
+	public void abrirFormularioPrincipal(){
+		main.abrirFormularioPrincipal();
+	}
+	public Main getMain() {
+		return main;
+	}
+
+	public void setMain(Main main) {
+		this.main = main;
+	}
+}
