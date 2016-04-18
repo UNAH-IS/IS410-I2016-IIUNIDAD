@@ -1,0 +1,13 @@
+package ejemplo;
+
+public class Cliente {
+	private Socket socketCliente;
+	public Cliente(){
+		
+	}
+
+	public static void main(String[] args) {
+		new Cliente();
+	}
+
+}

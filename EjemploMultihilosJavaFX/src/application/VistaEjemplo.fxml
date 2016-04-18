@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<BorderPane prefHeight="276.0" prefWidth="420.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.ControladorEjemplo">
+   <center>
+      <Label fx:id="etiqueta" text="Label" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+   </center>
+   <top>
+      <ProgressBar fx:id="barraProgreso" prefWidth="200.0" progress="0.0" BorderPane.alignment="CENTER" />
+   </top>
+   <right>
+      <ProgressIndicator fx:id="indicadorProgreso" progress="0.0" BorderPane.alignment="CENTER" />
+   </right>
+   <left>
+      <ProgressIndicator BorderPane.alignment="CENTER" />
+   </left>
+   <bottom>
+      <ProgressBar prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

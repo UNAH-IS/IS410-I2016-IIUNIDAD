@@ -1,0 +1,20 @@
+package ejemplo;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+
+public class Servidor {
+	private ServerSocket socketServidor;
+	public Servidor(){
+		try {
+			socketServidor = new ServerSocket(1234);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) {
+		new Servidor();
+	}
+
+}

@@ -1,0 +1,12 @@
+package ejemplo;
+
+public class Cliente {
+	public Cliente(){
+		
+	}
+
+	public static void main(String[] args) {
+		new Cliente();
+	}
+
+}
