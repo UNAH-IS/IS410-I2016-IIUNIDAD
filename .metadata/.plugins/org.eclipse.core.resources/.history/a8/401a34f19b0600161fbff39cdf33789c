@@ -1,0 +1,96 @@
+package application;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+
+
+public class ServidorController implements Initializable{
+	private boolean finalizo = false;
+	private ServerSocket servidor;
+	
+	
+	private DataOutputStream salida;
+	private DataInputStream entrada;
+	
+	@FXML private TextArea txtMensaje;
+	@FXML private TextArea txtResultado;
+	@FXML private ListView<String> lstClientes;
+	private ArrayList<Socket> socketsClientes;
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		socketsClientes = new ArrayList<Socket>();
+		Task<String> tareaEscucharPeticiones = new Task<String>(){
+			public String call(){
+				try {
+					servidor = new ServerSocket(6066);					
+					while(!finalizo){
+						Socket cliente= servidor.accept();
+						System.out.println("Cliente conectado: " + cliente);
+						socketsClientes.add(cliente);
+						procesarMensajesCliente(cliente);
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				return "Tarea finalizada";
+			}
+		};
+	}
+	
+	public void procesarMensajesCliente(Socket cliente){
+		Task<String> tareaLecturaMensajes = new Task<String>(){
+
+			@Override
+			protected String call() throws Exception {
+				
+				System.out.println("Esperando conexiones");
+				System.out.println("Se conecto un cliente");
+				salida = new DataOutputStream(cliente.getOutputStream());
+				entrada = new DataInputStream(cliente.getInputStream());
+				while(!finalizo){
+					System.out.println("Esperando a que el cliente escriba algo");
+					String mensaje = entrada.readUTF();
+					Platform.runLater(new Runnable(){
+						@Override
+						public void run() {
+								txtResultado.appendText(mensaje+"\n");
+						}
+					});
+				}
+				servidor.close();
+				cliente.close();
+				return "Finalizo la tarea";
+			}
+			
+		};
+		Thread hilo = new Thread(tareaLecturaMensajes);
+		hilo.setDaemon(true); //Para que el hilo de la aplicacion
+		//finalicen cuando se cierra la aplicacion
+		hilo.start();//Inicia el hilo, es decir llama al metodo call()
+	}
+	
+	@FXML
+	public void enviarMensaje(){
+		 try {
+			salida.writeUTF("[SERVIDOR]: " + txtMensaje.getText());
+			txtResultado.appendText("[SERVIDOR]: " + txtMensaje.getText()+"\n");
+			txtMensaje.setText(null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		 
+	}
+	
+}
